@@ -1,0 +1,6 @@
+node_modules/
+dist/
+anatomy-src/
+test-media/
+public/mediapipe/
+public/models/*.task

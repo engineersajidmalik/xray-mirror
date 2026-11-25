@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>X-Ray Mirror</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='7' r='6' fill='%235cc8ff'/%3E%3C/svg%3E" />
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <header class="topbar"><h1>X-Ray Mirror</h1><span class="tag">runs on this computer · no upload</span></header>
+    <main class="layout">
+      <section class="stage-wrap">
+        <div id="stage" class="stage">
+          <video id="video" playsinline muted></video>
+          <canvas id="gl"></canvas>
+          <canvas id="overlay"></canvas>
+          <div id="hands-chip" class="chip" hidden></div>
+          <div id="status" class="status">Starting ...</div>
+          <pre id="debug" class="debug" hidden></pre>
+        </div>
+      </section>
+      <aside id="panel" class="panel"></aside>
+    </main>
+    <footer class="footer">
+      <p>
+        The anatomy is a real 3D dataset of one adult, scaled and pinned to your head. It shows where structures typically sit,
+        not a scan of you, and it is not a medical tool. Video is processed on this computer and never uploaded.
+      </p>
+      <p class="credits">
+        Anatomy: <a href="https://dbarchive.biosciencedbc.jp/en/bodyparts3d/" target="_blank" rel="noreferrer">BodyParts3D</a>,
+        © The Database Center for Life Science, CC BY-SA 2.1 JP (modified). Facial muscles: generated from the MediaPipe canonical
+        face model (Apache 2.0). Tracking: MediaPipe.
+      </p>
+    </footer>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

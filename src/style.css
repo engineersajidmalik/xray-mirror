@@ -1,0 +1,81 @@
+:root {
+  --bg: #070b14;
+  --glass: rgba(20, 30, 50, 0.55);
+  --line: rgba(140, 190, 255, 0.18);
+  --text: #dbe8ff;
+  --muted: #8ea3c4;
+  --accent: #5cc8ff;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: radial-gradient(1200px 700px at 30% -10%, #13284a 0%, var(--bg) 60%);
+  color: var(--text);
+  font: 14px/1.4 "Segoe UI", system-ui, -apple-system, sans-serif;
+}
+.topbar { display: flex; align-items: baseline; gap: 12px; padding: 14px 20px 6px; }
+.topbar h1 { margin: 0; font-size: 22px; letter-spacing: 0.5px; }
+.tag { color: var(--muted); font-size: 12px; }
+
+.layout { display: grid; grid-template-columns: minmax(0, 1fr) 340px; gap: 16px; padding: 8px 20px; align-items: start; }
+@media (max-width: 900px) {
+  .layout { grid-template-columns: 1fr; }
+  .panel { position: static; max-height: none; } /* below the video on narrow screens: the page scrolls */
+}
+
+.stage-wrap { display: flex; justify-content: center; }
+.stage {
+  position: relative; width: 100%; max-height: calc(100vh - 150px); aspect-ratio: 16 / 9;
+  border-radius: 14px; overflow: hidden; background: #000; border: 1px solid var(--line);
+}
+.stage video, .stage canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+/* Selfie view: the video and the 3D overlay are mirrored together; labels are not. */
+.stage video, #gl { transform: scaleX(-1); }
+.stage video { object-fit: fill; }
+
+.status {
+  position: absolute; inset: 0; display: grid; place-items: center; text-align: center; padding: 24px;
+  background: rgba(5, 10, 20, 0.75); font-size: 16px; white-space: pre-line;
+}
+.status[hidden] { display: none; }
+.status.banner { inset: auto 0 18px 0; background: none; padding: 0; font-size: 15px; text-shadow: 0 1px 4px #000; }
+.chip {
+  position: absolute; top: 10px; left: 10px; padding: 4px 10px; border-radius: 999px;
+  background: rgba(10, 20, 35, 0.75); border: 1px solid var(--line); font-size: 12px;
+}
+.debug {
+  position: absolute; right: 10px; bottom: 10px; margin: 0; padding: 8px 10px; border-radius: 8px;
+  background: rgba(0, 0, 0, 0.7); border: 1px solid var(--line); font: 12px/1.45 Consolas, "Cascadia Mono", monospace;
+  color: #bfe3ff; pointer-events: none;
+}
+
+.panel {
+  background: var(--glass); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--line); border-radius: 14px; padding: 2px 14px 12px;
+  /* Stays in view beside the video and scrolls on its own when taller than the window. */
+  position: sticky; top: 8px; max-height: calc(100vh - 76px); overflow-y: auto; overscroll-behavior: contain;
+  scrollbar-width: thin; scrollbar-color: rgba(120, 190, 255, 0.5) transparent;
+}
+.panel h2 { font-size: 11px; text-transform: uppercase; letter-spacing: 1.2px; color: var(--muted); margin: 12px 0 5px; }
+.panel label { display: flex; align-items: center; gap: 8px; margin: 3px 0; cursor: pointer; }
+.panel .row { display: grid; grid-template-columns: 118px 1fr 50px; align-items: center; gap: 8px; margin: 3px 0; font-size: 13px; }
+.panel .row output { text-align: right; color: var(--muted); font-variant-numeric: tabular-nums; }
+.panel input[type="range"] { width: 100%; accent-color: var(--accent); }
+.panel input[type="checkbox"] { accent-color: var(--accent); }
+.panel select { width: 100%; background: #0d1628; color: var(--text); border: 1px solid var(--line); border-radius: 8px; padding: 6px; }
+.dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+.buttons { display: flex; flex-wrap: wrap; gap: 6px; }
+.panel button {
+  background: rgba(92, 200, 255, 0.08); color: var(--text); border: 1px solid var(--line); border-radius: 8px;
+  padding: 6px 10px; cursor: pointer;
+}
+.panel button:hover { border-color: var(--accent); }
+.panel button.on { background: rgba(92, 200, 255, 0.25); border-color: var(--accent); }
+.tip { color: var(--muted); font-size: 12px; margin: 6px 0; }
+
+.footer { padding: 6px 20px 18px; color: var(--muted); font-size: 12px; max-width: 1100px; }
+.footer p { margin: 4px 0; }
+.footer a { color: var(--accent); }

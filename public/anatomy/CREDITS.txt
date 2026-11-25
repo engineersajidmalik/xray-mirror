@@ -1,0 +1,5 @@
+Skull, jaw, teeth, eyes, brain, head outline and hand bones: BodyParts3D, (c) The Database Center for Life Science,
+licensed under CC Attribution-Share Alike 2.1 Japan (https://dbarchive.biosciencedbc.jp/en/bodyparts3d/).
+Modified: selected parts, converted, fitted to the MediaPipe canonical face, simplified.
+
+Facial muscles: generated from the MediaPipe canonical face model (Apache License 2.0).
