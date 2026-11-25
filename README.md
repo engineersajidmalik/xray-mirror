@@ -1,11 +1,35 @@
-# X-Ray Mirror
+<div align="center">
 
-A single-page web app that overlays a real-time **3D anatomical X-ray** (skull, brain,
-facial muscles, eyes, head outline) on your head, and **hand bones** on your hands, using
-your webcam. Everything runs in your browser; video never leaves your computer.
+# 🩻 X-Ray Mirror
+
+**Real-time 3D anatomical X-ray overlay on your webcam, running entirely in the browser.**
+
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white)
+![three.js](https://img.shields.io/badge/three.js-000000?style=flat-square&logo=threedotjs&logoColor=white)
+![MediaPipe](https://img.shields.io/badge/MediaPipe-0097A7?style=flat-square&logo=google&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-646CFF?style=flat-square&logo=vite&logoColor=white)
+![License](https://img.shields.io/badge/code-MIT-green?style=flat-square)
+
+<!-- ADD DEMO: record a 10-second screen capture, save as docs/demo.gif, then uncomment: -->
+<!-- <img src="docs/demo.gif" alt="X-Ray Mirror demo" width="720"/> -->
+
+</div>
+
+A single-page web app that overlays a 3D anatomical X-ray (skull, brain, facial muscles, eyes,
+head outline) on your head, and hand bones on your hands, using your webcam. Video never leaves
+your computer.
 
 > The anatomy is a real 3D dataset of one adult, scaled and pinned to your head. It shows
 > where structures typically sit, not a scan of you, and it is not a medical tool.
+
+## Highlights
+
+- **Face and hand tracking** with MediaPipe running in two Web Workers (GPU delegate, CPU fallback)
+- **Stable motion:** One-Euro filtering plus a display-rate follower for smooth overlays
+- **Adaptive performance:** render resolution drops automatically when frames take over 14 ms
+- **Mixed reality controls:** X-ray lens that follows your fingertip, reveal modes, edge feather
+- **Reproducible asset pipeline:** `npm run anatomy` builds GLB layers from BodyParts3D via HTTP range requests
+- **End-to-end tests:** headless Chrome plays a video as a fake webcam and reports FPS and errors
 
 ## Setup
 
@@ -38,6 +62,11 @@ canonical face space (cm) and fits them to it, matching eye centres, nasion and 
 simplifies the meshes and writes one GLB per layer. BodyParts3D contains **no facial
 muscles**, so that layer is generated from the face mesh: frontalis, orbicularis oculi/oris,
 zygomaticus major, masseter and temporalis, as surface patches 3.5 mm under the skin.
+
+## License
+
+Code is released under the [MIT License](LICENSE). Anatomy data is derived from BodyParts3D
+(CC BY-SA 2.1 JP), so the generated `public/anatomy/*.glb` files stay under that licence.
 
 **Credits:** Anatomy: BodyParts3D, © The Database Center for Life Science, licensed under
 CC Attribution-Share Alike 2.1 Japan (modified: parts selected, converted, fitted,
